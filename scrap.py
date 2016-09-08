@@ -15,7 +15,7 @@ REQUEST_HEADERS = {
     'Accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
     "Accept-Encoding": "gzip, deflate, sdch"
     }
-DATE_DIR = '../data/'
+DATE_DIR = './data/'
 DAILY_DATA_FILE = 'daily_price.csv'
 MONTHLY_DATA_FILE = 'monthly_price.csv'
 YEARLY_DATA_FILE = 'yearly_price.csv'
@@ -25,9 +25,9 @@ def get_gas_price():
     """
 
     """
-    # response = requests.request("GET", URL, headers=REQUEST_HEADERS, stream=True)
-    # response_page_soap = BeautifulSoup(response.text, 'html.parser')
-    response_page_soap = BeautifulSoup(open('aa.html'), 'html.parser')
+    response = requests.request("GET", URL, headers=REQUEST_HEADERS, stream=True)
+    response_page_soap = BeautifulSoup(response.text, 'html.parser')
+    # response_page_soap = BeautifulSoup(open('aa.html'), 'html.parser')
     table = response_page_soap.find('table', summary=re.compile("^Henry Hub Natural Gas Spot Price.*"))
     results = dict()
     headers = list()
@@ -126,7 +126,6 @@ def write_yearly_data(a):
             values.extend(daily_values.values())
         avg = round(sum(values)/len(values), 2)
         total_data.append([year, avg])
-    print total_data
     with open(file_name, "wb") as c:
         writer = csv.writer(c, delimiter=',', lineterminator='\n')
         if not file_exists:
@@ -143,5 +142,4 @@ if __name__ == '__main__':
     write_daily_data(formatted_price)
     write_monthly_data(aggregate_data)
     write_yearly_data(aggregate_data)
-    # for k, v in aggregate_data.iteritems():
-    #     print k, '->', v
+

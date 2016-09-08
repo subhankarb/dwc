@@ -1,0 +1,15 @@
+body {
+  padding-top: 20px;
+  font: 12px sans-serif;
+  font-weight: bold;
+}
+.navigator .data {
+    fill: lightgrey;
+    stroke-width: 0px;
+}
+
+.navigator .line {
+    fill: none;
+    stroke: darkgrey;
+    stroke-width: 1px;
+}

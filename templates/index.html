@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Flask Stock Visualizer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href={{ url_for('static', filename='./bower_components/bootstrap/dist/css/bootstrap.min.css') }} rel="stylesheet" media="screen">
+    <link href={{ url_for('static', filename='main.css') }} rel="stylesheet" media="screen">
+</head>
+<body>
+    <div class="container" id="outer">
+        <p>Chart Created By High chart</p>
+        <div id="container123" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    </div>
+    <script src={{ url_for('static', filename='./bower_components/jquery/dist/jquery.min.js') }}></script>
+    <script src={{ url_for('static', filename='./bower_components/bootstrap/dist/js/bootstrap.min.js') }}></script>
+    <script src={{ url_for('static', filename='./bower_components/highcharts/highcharts.js') }}></script>
+    <script src={{ url_for('static', filename='./bower_components/highcharts/modules/exporting.js') }}></script>
+    <script src={{ url_for('static', filename='main.js') }}></script>
+</body>
+</html>
