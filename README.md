@@ -12,3 +12,4 @@ For the first part 3 types of csv files has been generated.
 For the second part using flask a API end point has be opened so that we can see some chart 
 of the csv data. Used highchart to generate the chart and flask to parse the csv and send json to
 front end.
+The chart can be seen http://ec2-54-69-180-51.us-west-2.compute.amazonaws.com:5000/
