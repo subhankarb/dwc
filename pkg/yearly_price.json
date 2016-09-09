@@ -1,0 +1,1 @@
+{"name": "yearly-gas-price", "resources": [{"path": "./data/yearly_price.csv", "name": "data", "schema": {"fields": [{"description": "", "format": "default", "type": "geojson", "name": "YEAR", "title": ""}, {"description": "", "format": "default", "type": "geojson", "name": "PRICE", "title": ""}]}}], "title": "Yearly Avg Gas Price"}

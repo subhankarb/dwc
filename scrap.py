@@ -23,7 +23,8 @@ YEARLY_DATA_FILE = 'yearly_price.csv'
 
 def get_gas_price():
     """
-
+        This method gets the data from site and parse the HTML table.
+        It returns dict with values like: {"1997 Jan- 6 to Jan-10": ["4.00", "4.01", "4.34", "4.71", "3.91"]}
     """
     response = requests.request("GET", URL, headers=REQUEST_HEADERS, stream=True)
     response_page_soap = BeautifulSoup(response.text, 'html.parser')
@@ -46,7 +47,8 @@ def get_gas_price():
 
 def generate_date(gas_price):
     """
-
+        This method parse the data from get_gas_price() and format the date.
+        It returns dict with values like: {"1997-1-1": 2.3, "1997-1-2": 2.4}
     """
     data = dict()
     delta = {'Mon': 0, 'Tue': 1, 'Wed': 2, 'Thu': 3, 'Fri': 4}
@@ -65,7 +67,26 @@ def generate_date(gas_price):
 
 def aggregate_data(formatted_gas_price):
     """
-
+        This method aggregates the data from generate_date based on year month and day.
+        The returned data would be like:
+         {
+            1997: {
+                1: {
+                    1: 2.3,
+                    2: 2.4,
+                    3: 1.5
+                },
+                2: {
+                    1: 1.1,
+                    2: 2.2
+                }
+            },
+            1998: {
+                1: {
+                    1: 2.8
+                }
+            }
+         }
     """
     final_data = dict()
     for date, value in formatted_gas_price.iteritems():
@@ -84,6 +105,11 @@ def aggregate_data(formatted_gas_price):
 
 
 def write_daily_data(a):
+    """
+        This method writes daily data to csv file format, will be
+        DAY, PRICE
+        1997-1-1,2.2
+    """
     file_name = DATE_DIR + DAILY_DATA_FILE
     file_exists = os.path.isfile(file_name)
     headers = ['DAY', 'PRICE']
@@ -96,6 +122,12 @@ def write_daily_data(a):
 
 
 def write_monthly_data(a):
+    """
+        This method writes monthly average data to csv file, format will be
+        YEAR,MONTH,PRICE
+        1997,1,2.21
+        1997,2,2.75
+    """
     file_name = DATE_DIR + MONTHLY_DATA_FILE
     file_exists = os.path.isfile(file_name)
     headers = ['YEAR', 'MONTH', 'PRICE']
@@ -116,6 +148,12 @@ def write_monthly_data(a):
 
 
 def write_yearly_data(a):
+    """
+        This method writes yearly average data to csv file, format will be
+        YEAR,PRICE
+        1997,2.21
+        1998,2.75
+    """
     file_name = DATE_DIR + YEARLY_DATA_FILE
     file_exists = os.path.isfile(file_name)
     headers = ['YEAR', 'PRICE']

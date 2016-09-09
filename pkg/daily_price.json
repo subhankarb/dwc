@@ -1,0 +1,1 @@
+{"name": "daily-gas-price", "resources": [{"path": "./data/daily_price.csv", "name": "data", "schema": {"fields": [{"description": "", "format": "default", "type": "geojson", "name": "DAY", "title": ""}, {"description": "", "format": "default", "type": "geojson", "name": "PRICE", "title": ""}]}}], "title": "Daily Gas Price"}

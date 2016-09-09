@@ -3,11 +3,9 @@ $(function() {
     $.getJSON('/data', function(data_got){
         var data = [];
         data_got.forEach(function(d) {
-            //var dt = moment(d.DAY, 'YYYY-MM-DD').toDate();
-
             data.push([Date.parse(d.DAY), parseFloat(d.PRICE)])
         });
-        console.log(data);
+        //console.log(data);
         $('#container123').highcharts({
             chart: {
                 zoomType: 'x'
@@ -23,11 +21,14 @@ $(function() {
                 type: 'datetime',
                 dateTimeLabelFormats: {
                     day: '%d %b %Y'    //ex- 01 Jan 2016
+                },
+                title: {
+                    text: 'Date'
                 }
             },
             yAxis: {
                 title: {
-                    text: 'Gas Prices'
+                    text: 'Gas Prices Dollars Per Million Btu'
                 }
             },
             legend: {
@@ -62,10 +63,12 @@ $(function() {
                     turboThreshold:0//larger threshold or set to 0 to disable
                 }
             },
-
+            credits: {
+                enabled: false
+            },
             series: [{
                 type: 'area',
-                name: 'USD to EUR',
+                name: 'GAS PRICE',
                 data: data
             }]
         });
